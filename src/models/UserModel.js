@@ -27,21 +27,15 @@ class User {
 
     const salt = bcrypt.genSaltSync();
     this.body.password = bcrypt.hashSync(this.body.password, salt);
-
-    try {
-      this.user = await UserModel.create(this.body);
-    } catch (error) {
-      console.error(error);
-    }
+    this.user = await UserModel.create(this.body);
+    
   }
 
   async userExist() {
-    try {
-      const userFound = await UserModel.findOne({ email: this.body.email });
-      if (userFound) this.errors.push('Usuário já existe');
-    } catch (error) {
-      console.error(error);
-    }
+    
+    const userFound = await UserModel.findOne({ email: this.body.email });
+    if (userFound) this.errors.push('Usuário já existe');
+
   }
 
   valid() {
