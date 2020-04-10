@@ -10,6 +10,7 @@ const SessionController = require('./src/controllers/SessionController');
 const UserController = require('./src/controllers/UserController');
 route.get('/session', SessionController.index);
 route.post('/session/login', SessionController.store);
+route.get('/session/logout', SessionController.delete);
 route.post('/session/register', UserController.store);
 
 

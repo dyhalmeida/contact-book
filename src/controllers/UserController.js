@@ -14,6 +14,7 @@ class UserController {
       }
 
       req.flash('success', 'Usuário criado com sucesso');
+      req.session.user = user.user;
       return req.session.save(() => res.redirect('back'));
   
     } catch (error) {
