@@ -7,7 +7,8 @@ route.get('/', HomeController.index);
 
 /** Rota Login */
 const SessionController = require('./src/controllers/SessionController');
-route.get('/Session', SessionController.index);
+route.get('/session', SessionController.index);
+route.post('/session/register', SessionController.create);
 
 
 module.exports = route;

@@ -1,6 +1,29 @@
+const User = require('../models/UserModel');
+
 class SessionController {
   async index(req, res) {
     res.render('session'); 
+  }
+
+  async create(req, res) {
+
+    try {
+      const user = new User(req.body);
+      await user.register();
+  
+      if (user.errors.length) {
+        req.flash('errors', [...user.errors]);
+        return req.session.save(() => res.redirect('back'));
+      }
+
+      req.flash('success', 'Usuário criado com sucesso');
+      return req.session.save(() => res.redirect('back'));
+  
+    } catch (error) {
+      console.error(error);
+      return res.render('404');
+    }
+   
   }
 }
 
