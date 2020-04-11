@@ -14,7 +14,7 @@
       <%- include('includes/messages') %>
 
       <% if(contact._id) { %>
-        <form action="/contact/edit/<%= contact._id %>" method="POST">
+        <form action="/contact/<%= contact._id %>?_method=PUT" method="POST">
       <% } else { %>
         <form action="/contact" method="POST">
       <% } %>
