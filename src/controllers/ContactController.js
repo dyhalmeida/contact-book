@@ -36,6 +36,29 @@ class ContactController {
     }
     return res.render('contact', { contact });
   }
+
+  async update(req, res) {
+    if (!req.params.id) {
+      return res.render('404');
+    }
+    try {
+      const contact = new Contact(req.body);
+      await contact.update(req.params.id);
+
+      if (contact.errors.length) {
+        req.flash('errors', contact.errors);
+        return req.session.save(() => res.redirect('back'));
+      }
+
+      req.flash('success', 'Contato alterado com sucesso');
+      return req.session.save(() => res.redirect(`/contact/${contact.contact._id}`));
+
+    } catch (error) {
+      console.error(error);
+      return res.render('404');
+    }
+  }
+
 }
 
 module.exports = new ContactController();

@@ -21,6 +21,14 @@ Contact.show = async function(id) {
   return contact;
 }
 
+Contact.prototype.update = async function(id) {
+
+  this.valid();
+  if (this.errors.length) return;
+  this.contact = await ContactModel.findByIdAndUpdate(id, this.body, { new: true });
+
+}
+
 Contact.prototype.register = async function() {
   
   this.valid();
