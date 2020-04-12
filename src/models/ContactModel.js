@@ -16,11 +16,6 @@ function Contact(body) {
   this.contact = null;
 }
 
-Contact.show = async function(id) {
-  const contact = await ContactModel.findById(id);
-  return contact;
-}
-
 Contact.prototype.update = async function(id) {
 
   this.valid();
@@ -70,6 +65,20 @@ Contact.prototype.clean = function() {
     email: this.body.email,
     telephone: this.body.telephone
   }
+}
+
+/** Static Method */
+Contact.show = async function(id) {
+  const contact = await ContactModel.findById(id);
+  return contact;
+}
+
+Contact.index = async function() {
+  return await ContactModel.find().sort({ createdAt: -1 });
+}
+
+Contact.delete = async function(id) {
+  return await ContactModel.findOneAndDelete({ _id: id });
 }
 
 module.exports = Contact;

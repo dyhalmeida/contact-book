@@ -15,11 +15,17 @@
 
       <div class="responsive-table">
         <table class="table my-3">
-          <tr>
-            <td>Diego Almeida</td>
-            <td>(71) 982212621</td>
-            <td>dyhalmeida@gmail.com</td>
-          </tr>
+          <% contacts.forEach(contact => { %>
+
+            <tr>
+              <td><%= contact.name %></td>
+              <td><%= contact.email %></td>
+              <td><%= contact.telephone %></td>
+              <td><a href="/contact/<%= contact._id %>">Editar</a></td>
+              <td><a class="text-danger" href="/contact/delete/<%= contact._id %>">Excluir</a></td>
+            </tr>
+
+          <% }) %>
         </table>
       </div>
 

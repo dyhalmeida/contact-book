@@ -5,7 +5,7 @@ class SessionController {
   async index(req, res) {
 
     if (req.session.user) {
-      return res.render('test');
+      return req.session.save(() => res.redirect('/'));
     }
     return res.render('session'); 
     
@@ -24,7 +24,7 @@ class SessionController {
 
       req.flash('success', 'Login realizado com sucesso');
       req.session.user = user.user;
-      return req.session.save(() => res.redirect('back'));
+      return req.session.save(() => res.redirect('/'));
   
     } catch (error) {
       console.error(error);

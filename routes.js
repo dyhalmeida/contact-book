@@ -20,6 +20,7 @@ const ContactController = require('./src/controllers/ContactController');
 route.get('/contact', loginRequired, ContactController.index);
 route.get('/contact/:id', loginRequired, ContactController.show);
 route.put('/contact/:id', loginRequired, ContactController.update);
+route.get('/contact/delete/:id', loginRequired, ContactController.delete);
 route.post('/contact', loginRequired, ContactController.store);
 
 
