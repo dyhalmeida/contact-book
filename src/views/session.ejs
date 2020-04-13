@@ -18,7 +18,7 @@
         <div class="col-lg">
           <h4>Entrar no sistema</h4>
           <p>Faça login caso já possua uma conta.</p>
-          <form action="/session/login" method="POST">
+          <form class="form-login-access" action="/session/login" method="POST">
             <input type="hidden" name="_csrf" value=<%= csrfToken %>>
             <div class="form-group">
               <label>Seu e-mail</label>
@@ -35,7 +35,7 @@
         <div class="col-lg">
           <h4>Faça seu cadastro</h4>
           <p>Cadastre-se caso não possua uma conta.</p>
-          <form action="/session/register" method="POST">
+          <form class="form-login-create" action="/session/register" method="POST">
             <input type="hidden" name="_csrf" value=<%= csrfToken %>>
             <div class="form-group">
               <label>Seu e-mail</label>
